@@ -37,14 +37,14 @@ const HeadTable = ({ tableModel, order, orderBy, onRequestSort }) => {
 };
 
 HeadTable.propTypes = {
-  tableModel: PropTypes.func,
+  tableModel: PropTypes.arrayOf(PropTypes.shape({})),
   order: PropTypes.string,
   orderBy: PropTypes.string,
   onRequestSort: PropTypes.func
 };
 
 HeadTable.defaultProps = {
-  tableModel: () => {},
+  tableModel: [],
   order: '',
   orderBy: '',
   onRequestSort: () => {}
