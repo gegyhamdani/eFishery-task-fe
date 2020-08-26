@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { SWRConfig } from 'swr';
 import api from '../src/services/api';
 
-import '../styles/globals.css';
+import '../styles/globals.scss';
 
 const MyApp = ({ Component, pageProps }) => {
   return (
