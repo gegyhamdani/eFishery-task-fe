@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
     "axios": "^0.20.0",
     "json-reactform": "^0.1.14",
     "next": "9.5.2",
