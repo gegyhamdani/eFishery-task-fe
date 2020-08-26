@@ -2,8 +2,7 @@ const Base = areaList => ({
   Komoditas: {
     type: 'text',
     required: true,
-    placeholder: 'Komoditas',
-    defaultValue: 'Komoditas'
+    placeholder: 'Komoditas'
   },
   Area: {
     type: 'select',
@@ -12,17 +11,15 @@ const Base = areaList => ({
     defaultValue: '2',
     options: areaList
   },
-  Size: {
+  Ukuran: {
     type: 'number',
     required: true,
-    placeholder: 'Jumlah',
-    defaultValue: '10'
+    placeholder: 'Ukuran'
   },
   Harga: {
     type: 'currency',
     required: true,
-    placeholder: 'Harga anu',
-    defaultValue: '50000'
+    placeholder: 'Harga'
   },
   Save: {
     type: 'submit'
