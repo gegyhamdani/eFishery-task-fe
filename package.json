@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "axios": "^0.20.0",
     "json-reactform": "^0.1.14",
     "next": "9.5.2",
     "prop-types": "^15.7.2",
