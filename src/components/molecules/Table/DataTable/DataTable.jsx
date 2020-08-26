@@ -3,11 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import {
   Table,
-  TableBody,
-  TableCell,
   TableContainer,
   TablePagination,
-  TableRow,
   Paper,
   Toolbar,
   Typography,
@@ -22,6 +19,7 @@ import Spinner from '../../../atoms/Spinner';
 import TableModelFish from '../../../../models/TableModelFish';
 import useList from '../../../../util/hooks';
 import { getComparator, stableSort } from '../../../../helpers/DataTableHelper';
+import BodyTable from '../BodyTable/BodyTable';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -89,26 +87,12 @@ const DataTable = () => {
             onRequestSort={handleRequestSort}
             tableModel={TableModelFish.Base()}
           />
-          <TableBody>
-            {stableSort(filteredData, getComparator(order, orderBy))
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, index) => {
-                return (
-                  <TableRow hover tabIndex={-1} key={index.toString()}>
-                    <TableCell>{row.komoditas}</TableCell>
-                    <TableCell align="right">
-                      {Number.parseInt(row.price, 10).toLocaleString('id', {
-                        style: 'currency',
-                        currency: 'IDR'
-                      })}
-                    </TableCell>
-                    <TableCell align="right">{row.size}</TableCell>
-                    <TableCell>{row.area_provinsi}</TableCell>
-                    <TableCell>{row.area_kota}</TableCell>
-                  </TableRow>
-                );
-              })}
-          </TableBody>
+          <BodyTable
+            data={stableSort(filteredData, getComparator(order, orderBy)).slice(
+              page * rowsPerPage,
+              page * rowsPerPage + rowsPerPage
+            )}
+          />
         </Table>
       </TableContainer>
       <TablePagination
