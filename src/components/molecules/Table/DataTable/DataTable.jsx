@@ -11,6 +11,7 @@ import HeadTable from '../HeadTable/HeadTable';
 import TableModelFish from '../../../../models/TableModelFish';
 import useList from '../../../../util/hooks';
 import { getComparator, stableSort } from '../../../../helpers/DataTableHelper';
+import Spinner from '../../../atoms/Spinner';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -48,6 +49,10 @@ const DataTable = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  if (!dataListFetch) {
+    return <Spinner />;
+  }
 
   return (
     <Paper className={classes.root}>
