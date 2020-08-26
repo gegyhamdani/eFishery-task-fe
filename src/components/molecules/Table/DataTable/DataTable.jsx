@@ -1,17 +1,22 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TablePagination,
+  TableRow,
+  Paper
+} from '@material-ui/core';
+
 import HeadTable from '../HeadTable/HeadTable';
+import Spinner from '../../../atoms/Spinner';
+
 import TableModelFish from '../../../../models/TableModelFish';
 import useList from '../../../../util/hooks';
 import { getComparator, stableSort } from '../../../../helpers/DataTableHelper';
-import Spinner from '../../../atoms/Spinner';
 
 const useStyles = makeStyles(() => ({
   root: {
