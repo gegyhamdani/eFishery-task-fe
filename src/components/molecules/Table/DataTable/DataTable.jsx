@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import {
@@ -39,10 +39,10 @@ const useStyles = makeStyles(theme => ({
 const DataTable = () => {
   const { data: dataListFetch } = useList();
 
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('komoditas');
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [order, setOrder] = useState('asc');
+  const [orderBy, setOrderBy] = useState('komoditas');
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const classes = useStyles();
 
   const filteredData = (dataListFetch || []).filter(
@@ -69,42 +69,44 @@ const DataTable = () => {
   }
 
   return (
-    <Paper className={classes.root}>
-      <Toolbar className={classes.toolbarRoot}>
-        <Typography variant="h5">Daftar Komoditas</Typography>
-        <Tooltip title="Cari Data" placement="top">
-          <IconButton aria-label="cari data">
-            <SearchIcon fontSize="large" />
-          </IconButton>
-        </Tooltip>
-      </Toolbar>
-      <TableContainer className={classes.container}>
-        <Table aria-labelledby="fishList" size="medium" stickyHeader>
-          <HeadTable
-            classes={classes}
-            order={order}
-            orderBy={orderBy}
-            onRequestSort={handleRequestSort}
-            tableModel={TableModelFish.Base()}
-          />
-          <BodyTable
-            data={stableSort(filteredData, getComparator(order, orderBy)).slice(
-              page * rowsPerPage,
-              page * rowsPerPage + rowsPerPage
-            )}
-          />
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
-        component="div"
-        count={filteredData.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
-    </Paper>
+    <>
+      <Paper className={classes.root}>
+        <Toolbar className={classes.toolbarRoot}>
+          <Typography variant="h5">Daftar Komoditas</Typography>
+          <Tooltip title="Cari Data" placement="top">
+            <IconButton aria-label="cari data">
+              <SearchIcon fontSize="large" />
+            </IconButton>
+          </Tooltip>
+        </Toolbar>
+        <TableContainer className={classes.container}>
+          <Table aria-labelledby="fishList" size="medium" stickyHeader>
+            <HeadTable
+              classes={classes}
+              order={order}
+              orderBy={orderBy}
+              onRequestSort={handleRequestSort}
+              tableModel={TableModelFish.Base()}
+            />
+            <BodyTable
+              data={stableSort(
+                filteredData,
+                getComparator(order, orderBy)
+              ).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
+            />
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={filteredData.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </Paper>
+    </>
   );
 };
 
