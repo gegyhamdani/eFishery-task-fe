@@ -8,8 +8,13 @@ import {
   TableContainer,
   TablePagination,
   TableRow,
-  Paper
+  Paper,
+  Toolbar,
+  Typography,
+  Tooltip,
+  IconButton
 } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 
 import HeadTable from '../HeadTable/HeadTable';
 import Spinner from '../../../atoms/Spinner';
@@ -18,12 +23,18 @@ import TableModelFish from '../../../../models/TableModelFish';
 import useList from '../../../../util/hooks';
 import { getComparator, stableSort } from '../../../../helpers/DataTableHelper';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '90%'
   },
   container: {
     maxHeight: 440
+  },
+  toolbarRoot: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+    display: 'flex',
+    justifyContent: 'space-between'
   }
 }));
 
@@ -61,6 +72,14 @@ const DataTable = () => {
 
   return (
     <Paper className={classes.root}>
+      <Toolbar className={classes.toolbarRoot}>
+        <Typography variant="h5">Daftar Komoditas</Typography>
+        <Tooltip title="Cari Data" placement="top">
+          <IconButton aria-label="cari data">
+            <SearchIcon fontSize="large" />
+          </IconButton>
+        </Tooltip>
+      </Toolbar>
       <TableContainer className={classes.container}>
         <Table aria-labelledby="fishList" size="medium" stickyHeader>
           <HeadTable
