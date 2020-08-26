@@ -8,4 +8,8 @@ const useList = params => {
   return useSWR(`/list?${query}`);
 };
 
-export default useList;
+const useArea = () => {
+  return useSWR('/option_area');
+};
+
+export { useList, useArea };

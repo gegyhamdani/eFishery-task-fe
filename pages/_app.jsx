@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { SWRConfig } from 'swr';
 import api from '../src/services/api';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import '../styles/globals.scss';
 

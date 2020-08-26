@@ -14,12 +14,13 @@ import {
 import SearchIcon from '@material-ui/icons/Search';
 
 import HeadTable from '../HeadTable/HeadTable';
+import BodyTable from '../BodyTable/BodyTable';
+import ModalFormInput from '../../Modal/ModalFormInput';
 import Spinner from '../../../atoms/Spinner';
 
 import TableModelFish from '../../../../models/TableModelFish';
-import useList from '../../../../util/hooks';
+import { useList } from '../../../../util/hooks';
 import { getComparator, stableSort } from '../../../../helpers/DataTableHelper';
-import BodyTable from '../BodyTable/BodyTable';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -43,6 +44,7 @@ const DataTable = () => {
   const [orderBy, setOrderBy] = useState('komoditas');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [isOpenModalAddData, setOpenModalAddData] = useState(false);
   const classes = useStyles();
 
   const filteredData = (dataListFetch || []).filter(
@@ -64,17 +66,25 @@ const DataTable = () => {
     setPage(0);
   };
 
+  const handleOpenModalAddData = () => {
+    setOpenModalAddData(state => !state);
+  };
+
   if (!dataListFetch) {
     return <Spinner />;
   }
 
   return (
     <>
+      <ModalFormInput
+        isActive={isOpenModalAddData}
+        onClose={handleOpenModalAddData}
+      />
       <Paper className={classes.root}>
         <Toolbar className={classes.toolbarRoot}>
           <Typography variant="h5">Daftar Komoditas</Typography>
           <Tooltip title="Cari Data" placement="top">
-            <IconButton aria-label="cari data">
+            <IconButton aria-label="cari data" onClick={handleOpenModalAddData}>
               <SearchIcon fontSize="large" />
             </IconButton>
           </Tooltip>
