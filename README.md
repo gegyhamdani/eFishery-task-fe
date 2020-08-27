@@ -1,30 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This App is build with React.JS & Next.JS <br/>
+Also using [json-reactform](https://github.com/eFishery/json-reactform) for formx
 
-## Getting Started
+## Installations
 
-First, run the development server:
+- clone: `git clone https://github.com/gegyhamdani/task-list-manager.git`
+- install depandencies: `npm install`
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### `How To Use`
+- run web app: `npm run dev`, Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- You can click on table head to sort data.
+- Add Data is available on add icon at top right table head
+- Search Data is available on search icon at top right table head
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
