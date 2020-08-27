@@ -75,14 +75,14 @@ const DataTable = ({ onOpenModalAddData }) => {
       <Toolbar className={classes.toolbarRoot}>
         <Typography variant="h5">Daftar Komoditas</Typography>
         <div>
-          <Tooltip title="Tambah Data" placement="top">
-            <IconButton aria-label="tambah data" onClick={onOpenModalAddData}>
-              <AddIcon fontSize="large" />
-            </IconButton>
-          </Tooltip>
           <Tooltip title="Cari Data" placement="top">
             <IconButton aria-label="tambah data" onClick={() => {}}>
               <SearchIcon fontSize="large" />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Tambah Data" placement="top">
+            <IconButton aria-label="tambah data" onClick={onOpenModalAddData}>
+              <AddIcon fontSize="large" />
             </IconButton>
           </Tooltip>
         </div>
