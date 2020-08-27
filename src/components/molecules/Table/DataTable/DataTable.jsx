@@ -13,6 +13,7 @@ import {
   IconButton
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
+import SearchIcon from '@material-ui/icons/Search';
 
 import HeadTable from '../HeadTable/HeadTable';
 import BodyTable from '../BodyTable/BodyTable';
@@ -73,11 +74,18 @@ const DataTable = ({ onOpenModalAddData }) => {
     <Paper className={classes.root}>
       <Toolbar className={classes.toolbarRoot}>
         <Typography variant="h5">Daftar Komoditas</Typography>
-        <Tooltip title="Tambah Data" placement="top">
-          <IconButton aria-label="tambah data" onClick={onOpenModalAddData}>
-            <AddIcon fontSize="large" />
-          </IconButton>
-        </Tooltip>
+        <div>
+          <Tooltip title="Tambah Data" placement="top">
+            <IconButton aria-label="tambah data" onClick={onOpenModalAddData}>
+              <AddIcon fontSize="large" />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Cari Data" placement="top">
+            <IconButton aria-label="tambah data" onClick={() => {}}>
+              <SearchIcon fontSize="large" />
+            </IconButton>
+          </Tooltip>
+        </div>
       </Toolbar>
       <TableContainer className={classes.container}>
         <Table aria-labelledby="fishList" size="medium" stickyHeader>
