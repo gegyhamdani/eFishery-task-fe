@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import dynamic from 'next/dynamic';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Typography } from '@material-ui/core';
+
 import ModalBase from '../ModalBase';
 
 import FishModel from '../../../../models/FishModel';
-import { useArea } from '../../../../util/hooks';
-import Spinner from '../../../atoms/Spinner';
+import { useArea, saveData } from '../../../../util/hooks';
 
 import styles from './index.module.scss';
 
@@ -18,9 +19,24 @@ const JsonToForm = dynamic(() => import('json-reactform'), {
 const ModalFormInput = ({ isActive, onClose }) => {
   const { data: dataAreaFetch } = useArea();
 
-  if (!dataAreaFetch && !isActive) {
-    return <Spinner />;
-  }
+  const handleSubmitForm = async params => {
+    const today = Date.now();
+    const payload = {
+      uuid: uuidv4(),
+      komoditas: params.Komoditas,
+      area_provinsi: params.Area.value.province,
+      area_kota: params.Area.value.city,
+      size: params.Ukuran,
+      price: params.Harga,
+      tgl_parsed: new Date(today).toISOString(),
+      timestamp: today.toString()
+    };
+
+    const response = await saveData([payload]);
+    if (response) {
+      onClose(true);
+    }
+  };
 
   const areaData = (dataAreaFetch || []).map(item => ({
     value: item,
@@ -35,7 +51,10 @@ const ModalFormInput = ({ isActive, onClose }) => {
     >
       <Typography variant="h5">Tambah Komoditas</Typography>
       <div className={`${styles['form-container']}`}>
-        <JsonToForm model={FishModel.Base(areaData)} />
+        <JsonToForm
+          model={FishModel.Base(areaData)}
+          onSubmit={handleSubmitForm}
+        />
       </div>
     </ModalBase>
   );

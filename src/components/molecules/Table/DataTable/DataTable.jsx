@@ -76,10 +76,12 @@ const DataTable = () => {
 
   return (
     <>
-      <ModalFormInput
-        isActive={isOpenModalAddData}
-        onClose={handleOpenModalAddData}
-      />
+      {isOpenModalAddData && (
+        <ModalFormInput
+          isActive={isOpenModalAddData}
+          onClose={handleOpenModalAddData}
+        />
+      )}
       <Paper className={classes.root}>
         <Toolbar className={classes.toolbarRoot}>
           <Typography variant="h5">Daftar Komoditas</Typography>

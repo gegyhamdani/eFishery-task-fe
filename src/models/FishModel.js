@@ -7,7 +7,7 @@ const Base = areaList => ({
   Area: {
     type: 'select',
     required: true,
-    placeholder: 'Pilih item',
+    placeholder: 'Pilih Area',
     defaultValue: '2',
     options: areaList
   },
