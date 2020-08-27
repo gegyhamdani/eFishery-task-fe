@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const DataTable = ({ onOpenModalAddData }) => {
+const DataTable = ({ onOpenModalAddData, onOpenModalSearchData }) => {
   const { data: dataListFetch } = useList();
 
   const [order, setOrder] = useState('asc');
@@ -76,7 +76,7 @@ const DataTable = ({ onOpenModalAddData }) => {
         <Typography variant="h5">Daftar Komoditas</Typography>
         <div>
           <Tooltip title="Cari Data" placement="top">
-            <IconButton aria-label="tambah data" onClick={() => {}}>
+            <IconButton aria-label="cari data" onClick={onOpenModalSearchData}>
               <SearchIcon fontSize="large" />
             </IconButton>
           </Tooltip>
@@ -118,11 +118,13 @@ const DataTable = ({ onOpenModalAddData }) => {
 };
 
 DataTable.propTypes = {
-  onOpenModalAddData: PropTypes.func
+  onOpenModalAddData: PropTypes.func,
+  onOpenModalSearchData: PropTypes.func
 };
 
 DataTable.defaultProps = {
-  onOpenModalAddData: () => {}
+  onOpenModalAddData: () => {},
+  onOpenModalSearchData: () => {}
 };
 
 export default DataTable;

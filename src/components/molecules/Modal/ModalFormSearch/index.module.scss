@@ -1,0 +1,14 @@
+.modal-search__container {
+    padding: 2rem
+}
+
+.form-container {
+     margin-top: 10px;
+      padding: 2rem 2rem 0 0;
+}
+
+@media (max-width: 640px) {
+    .form-container {
+         padding-left: 2rem;
+   }
+}

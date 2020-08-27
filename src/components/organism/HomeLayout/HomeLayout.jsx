@@ -4,9 +4,11 @@ import { Snackbar } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import DataTable from '../../molecules/Table/DataTable';
 import ModalFormInput from '../../molecules/Modal/ModalFormInput';
+import ModalFormSearch from '../../molecules/Modal/ModalFormSearch';
 
 const HomeLayout = () => {
   const [isOpenModalAddData, setOpenModalAddData] = useState(false);
+  const [isOpenModalSearchData, setOpenModalSearchData] = useState(false);
   const [isOpenSnackbar, setOpenSnackbar] = useState(false);
 
   const handleOpenModalAddData = () => {
@@ -15,6 +17,14 @@ const HomeLayout = () => {
 
   const handleCloseModalAddData = () => {
     setOpenModalAddData(false);
+  };
+
+  const handleOpenModalSearchData = () => {
+    setOpenModalSearchData(true);
+  };
+
+  const handleCloseModalSearchData = () => {
+    setOpenModalSearchData(false);
   };
 
   const handleOpenSnackbar = () => {
@@ -35,6 +45,12 @@ const HomeLayout = () => {
           onSuccess={handleOpenSnackbar}
         />
       )}
+      {isOpenModalSearchData && (
+        <ModalFormSearch
+          isActive={isOpenModalSearchData}
+          onClose={handleCloseModalSearchData}
+        />
+      )}
       <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         key="success"
@@ -48,7 +64,10 @@ const HomeLayout = () => {
         }
         autoHideDuration={1000}
       />
-      <DataTable onOpenModalAddData={handleOpenModalAddData} />
+      <DataTable
+        onOpenModalAddData={handleOpenModalAddData}
+        onOpenModalSearchData={handleOpenModalSearchData}
+      />
     </>
   );
 };
