@@ -31,7 +31,7 @@ const HomeLayout = () => {
       {isOpenModalAddData && (
         <ModalFormInput
           isActive={isOpenModalAddData}
-          onClose={handleOpenSnackbar}
+          onClose={handleCloseModalAddData}
           onSuccess={handleOpenSnackbar}
         />
       )}
