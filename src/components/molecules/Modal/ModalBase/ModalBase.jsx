@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { IconButton } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+
 import styles from './index.module.scss';
 
 const ModalBase = ({ isActive, onClose, classNameContent, children }) => {
@@ -28,6 +31,11 @@ const ModalBase = ({ isActive, onClose, classNameContent, children }) => {
           role="button"
           tabIndex="0"
         >
+          <div className={`${styles['modal-base__close-button']}`}>
+            <IconButton aria-label="tambah data" onClick={onClose}>
+              <CloseIcon fontSize="large" />
+            </IconButton>
+          </div>
           {children}
         </div>
       </div>

@@ -15,10 +15,22 @@
   position: absolute;
   top: 45%;
   left: 50%;
-  width: 70%;
+  width: 600px;
   min-height: 100px;
   transform: translate(-50%, -50%);
   border-radius: 10px;
   background: #ffffff;
   padding-bottom: 10px;
+}
+
+.modal-base__close-button{
+  position: absolute;
+  right: 10px;
+  top: 0;
+}
+
+@media (max-width: 640px) {
+  .modal-base__content {
+    width: 70%;
+ }
 }
