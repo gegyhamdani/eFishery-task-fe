@@ -1,4 +1,4 @@
-const Base = areaList => ({
+const Base = (areaList, isLoading) => ({
   Komoditas: {
     type: 'text',
     required: true,
@@ -21,8 +21,9 @@ const Base = areaList => ({
     required: true,
     placeholder: 'Harga'
   },
-  Save: {
-    type: 'submit'
+  [isLoading ? 'Tunggu Sebentar' : 'Simpan']: {
+    type: 'submit',
+    disabled: isLoading
   }
 });
 

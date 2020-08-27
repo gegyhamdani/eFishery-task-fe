@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import dynamic from 'next/dynamic';
 import { v4 as uuidv4 } from 'uuid';
@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Typography } from '@material-ui/core';
 
 import ModalBase from '../ModalBase';
+import Spinner from '../../../atoms/Spinner';
 
 import FishModel from '../../../../models/FishModel';
 import { useArea, saveData } from '../../../../util/hooks';
@@ -18,8 +19,14 @@ const JsonToForm = dynamic(() => import('json-reactform'), {
 
 const ModalFormInput = ({ isActive, onClose }) => {
   const { data: dataAreaFetch } = useArea();
+  const [isLoading, setLoading] = useState(false);
+
+  if (!dataAreaFetch) {
+    return <Spinner />;
+  }
 
   const handleSubmitForm = async params => {
+    setLoading(true);
     const today = Date.now();
     const payload = {
       uuid: uuidv4(),
@@ -33,6 +40,7 @@ const ModalFormInput = ({ isActive, onClose }) => {
     };
 
     const response = await saveData([payload]);
+    setLoading(false);
     if (response) {
       onClose(true);
     }
@@ -52,7 +60,7 @@ const ModalFormInput = ({ isActive, onClose }) => {
       <Typography variant="h5">Tambah Komoditas</Typography>
       <div className={`${styles['form-container']}`}>
         <JsonToForm
-          model={FishModel.Base(areaData)}
+          model={FishModel.Base(areaData, isLoading)}
           onSubmit={handleSubmitForm}
         />
       </div>

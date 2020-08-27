@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 
 import {
@@ -15,7 +16,6 @@ import AddIcon from '@material-ui/icons/Add';
 
 import HeadTable from '../HeadTable/HeadTable';
 import BodyTable from '../BodyTable/BodyTable';
-import ModalFormInput from '../../Modal/ModalFormInput';
 import Spinner from '../../../atoms/Spinner';
 
 import TableModelFish from '../../../../models/TableModelFish';
@@ -37,14 +37,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const DataTable = () => {
+const DataTable = ({ onOpenModalAddData }) => {
   const { data: dataListFetch } = useList();
 
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('komoditas');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [isOpenModalAddData, setOpenModalAddData] = useState(false);
   const classes = useStyles();
 
   const filteredData = (dataListFetch || []).filter(
@@ -66,63 +65,56 @@ const DataTable = () => {
     setPage(0);
   };
 
-  const handleOpenModalAddData = () => {
-    setOpenModalAddData(state => !state);
-  };
-
   if (!dataListFetch) {
     return <Spinner />;
   }
 
   return (
-    <>
-      {isOpenModalAddData && (
-        <ModalFormInput
-          isActive={isOpenModalAddData}
-          onClose={handleOpenModalAddData}
-        />
-      )}
-      <Paper className={classes.root}>
-        <Toolbar className={classes.toolbarRoot}>
-          <Typography variant="h5">Daftar Komoditas</Typography>
-          <Tooltip title="Tambah Data" placement="top">
-            <IconButton
-              aria-label="tambah data"
-              onClick={handleOpenModalAddData}
-            >
-              <AddIcon fontSize="large" />
-            </IconButton>
-          </Tooltip>
-        </Toolbar>
-        <TableContainer className={classes.container}>
-          <Table aria-labelledby="fishList" size="medium" stickyHeader>
-            <HeadTable
-              classes={classes}
-              order={order}
-              orderBy={orderBy}
-              onRequestSort={handleRequestSort}
-              tableModel={TableModelFish.Base()}
-            />
-            <BodyTable
-              data={stableSort(
-                filteredData,
-                getComparator(order, orderBy)
-              ).slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
-            />
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={filteredData.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
-        />
-      </Paper>
-    </>
+    <Paper className={classes.root}>
+      <Toolbar className={classes.toolbarRoot}>
+        <Typography variant="h5">Daftar Komoditas</Typography>
+        <Tooltip title="Tambah Data" placement="top">
+          <IconButton aria-label="tambah data" onClick={onOpenModalAddData}>
+            <AddIcon fontSize="large" />
+          </IconButton>
+        </Tooltip>
+      </Toolbar>
+      <TableContainer className={classes.container}>
+        <Table aria-labelledby="fishList" size="medium" stickyHeader>
+          <HeadTable
+            classes={classes}
+            order={order}
+            orderBy={orderBy}
+            onRequestSort={handleRequestSort}
+            tableModel={TableModelFish.Base()}
+          />
+          <BodyTable
+            data={stableSort(filteredData, getComparator(order, orderBy)).slice(
+              page * rowsPerPage,
+              page * rowsPerPage + rowsPerPage
+            )}
+          />
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={filteredData.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onChangePage={handleChangePage}
+        onChangeRowsPerPage={handleChangeRowsPerPage}
+      />
+    </Paper>
   );
+};
+
+DataTable.propTypes = {
+  onOpenModalAddData: PropTypes.func
+};
+
+DataTable.defaultProps = {
+  onOpenModalAddData: () => {}
 };
 
 export default DataTable;
