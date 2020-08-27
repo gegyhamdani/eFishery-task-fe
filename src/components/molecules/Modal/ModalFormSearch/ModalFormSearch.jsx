@@ -23,7 +23,10 @@ const ModalFormSearch = ({ isActive, onClose }) => {
     return <Spinner />;
   }
 
-  const handleSubmitForm = async () => {};
+  const handleSubmitForm = async () => {
+    // I Am trully sorry because Submit Form for searching data is not finished yet
+    // Right now what I have (my skill) is not enough to finish this part in time
+  };
 
   const areaData = (dataAreaFetch || []).map(item => ({
     value: item,
