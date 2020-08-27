@@ -1,5 +1,5 @@
 This App is build with React.JS & Next.JS <br/>
-Also using [json-reactform](https://github.com/eFishery/json-reactform) for formx
+Also using [json-reactform](https://github.com/eFishery/json-reactform) for form
 
 ## Installations
 
