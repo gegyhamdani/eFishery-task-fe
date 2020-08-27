@@ -17,7 +17,7 @@ const JsonToForm = dynamic(() => import('json-reactform'), {
   ssr: false
 });
 
-const ModalFormInput = ({ isActive, onClose }) => {
+const ModalFormInput = ({ isActive, onClose, onSuccess }) => {
   const { data: dataAreaFetch } = useArea();
   const [isLoading, setLoading] = useState(false);
 
@@ -42,7 +42,7 @@ const ModalFormInput = ({ isActive, onClose }) => {
     const response = await saveData([payload]);
     setLoading(false);
     if (response) {
-      onClose(true);
+      onSuccess();
     }
   };
 
@@ -70,12 +70,14 @@ const ModalFormInput = ({ isActive, onClose }) => {
 
 ModalFormInput.propTypes = {
   isActive: PropTypes.bool,
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  onSuccess: PropTypes.func
 };
 
 ModalFormInput.defaultProps = {
   isActive: false,
-  onClose: () => {}
+  onClose: () => {},
+  onSuccess: () => {}
 };
 
 export default ModalFormInput;
