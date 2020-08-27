@@ -24,7 +24,7 @@ const ModalFormSearch = ({ isActive, onClose }) => {
   }
 
   const handleSubmitForm = async () => {
-    // I Am trully sorry because Submit Form for searching data is not finished yet
+    // I am trully sorry because Submit Form for searching data is not finished yet
     // Right now what I have (my skill) is not enough to finish this part in time
   };
 
